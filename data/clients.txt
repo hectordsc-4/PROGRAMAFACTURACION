@@ -1,0 +1,6 @@
+49189460A;Héctor;calle manacor;españa;07007;Mallorca;666981166
+47157070A;pedro;calle manacor;españa;00707;Mallorca;676981166
+44444444A;victor;calle Almudaina;España;02002;Mallorca;666981122
+43444444S;Denis Lopez;calle Arbucias;España;03003;Mallorca;333981166
+12345678A;Daniel Velarde;calle Manacor;España;21345;Mallorca;123456789
+45312345S;Salva;calle Eduardo Marquina;España;03004;Mallorca;987654321

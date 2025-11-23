@@ -1,0 +1,6 @@
+bote;12.0
+tenedor;4.0
+cuchara;3.0
+bol;7.0
+plato;8.0
+servilletas;2.0
