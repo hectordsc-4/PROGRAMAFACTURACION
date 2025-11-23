@@ -1,96 +1,95 @@
-Sistema de Gestión de Clientes, Artículos y Facturas
+Sistema de Facturación Java
+Descripción
 
-Este proyecto es un sistema de gestión desarrollado en Java que permite gestionar clientes, artículos y facturas. Ofrece tanto interfaz gráfica (Swing) como menú por consola para realizar operaciones de alta, consulta y listado de registros. Los datos se almacenan en archivos de texto (.txt).
+Este proyecto es un sistema de facturación desarrollado en Java que permite gestionar clientes, artículos y facturas, tanto desde interfaz gráfica (Swing) como desde menú de consola.
+Permite almacenar los datos en archivos CSV para su persistencia y generar facturas con cálculo automático de totales e IVA.
 
-Características
+Características principales
 
-Gestión de Clientes
+Gestión de clientes: alta, listado y consulta por DNI.
 
-Alta de nuevos clientes.
+Gestión de artículos: alta, listado y consulta por nombre.
 
-Listado completo de clientes.
+Gestión de facturas: creación automática de ID y fecha, hasta 10 líneas de artículos, cálculo de base imponible y total con IVA.
 
-Consulta de clientes por DNI.
+Visualización de archivos: clientes, artículos y facturas completas con líneas y totales.
 
-Gestión de Artículos
+Validación de datos de entrada (DNI, teléfono, CP, precios, cantidades, IVA).
 
-Alta de nuevos artículos con nombre y precio.
+Persistencia mediante archivos de texto (CSV).
 
-Listado completo de artículos.
+Interfaz gráfica amigable con Swing y menú de consola en hilo separado.
 
-Consulta de artículos por nombre.
+Requisitos
 
-Gestión de Facturas
+Java 11 o superior.
 
-Alta de facturas con fecha automática, ID secuencial y líneas de artículos.
+Sistema operativo compatible con Java (Windows, macOS, Linux).
 
-Consulta de facturas por ID.
+No requiere base de datos externa, usa archivos en la carpeta data.
 
-Cálculo automático de total incluyendo IVA.
+Estructura de archivos
+project/
+│
+├─ data/
+│  ├─ clients.txt         # Información de clientes
+│  ├─ articles.txt        # Información de artículos
+│  ├─ facturas.txt        # Información básica de facturas
+│  └─ lineas_factura.txt  # Líneas de cada factura
+│
+├─ model/
+│  ├─ Article.java
+│  ├─ Client.java
+│  ├─ Factura.java
+│  └─ LineaFactura.java
+│
+├─ service/
+│  └─ Service.java
+│
+├─ util/
+│  └─ Validations.java
+│
+├─ ui/
+│  └─ AppUI.java
+│
+└─ Main.java
 
-Ver archivos
+Instalación y ejecución
 
-Muestra todos los clientes, artículos y facturas en un formato legible.
+Clonar el repositorio:
 
-Validaciones
+git clone https://github.com/tuusuario/sistema-facturacion-java.git
+cd sistema-facturacion-java
 
-DNI, teléfono, código postal, IVA, precios y cantidades validadas.
 
-Sanitización de entradas para evitar caracteres problemáticos.
+Compilar el proyecto:
 
-Estructura del proyecto
-/src
-  /main
-    Main.java                  # Clase principal, arranca UI y menú consola
-  /model
-    Article.java               # Modelo de artículo
-    Client.java                # Modelo de cliente
-    Factura.java               # Modelo de factura
-    LineaFactura.java          # Línea de factura
-  /service
-    Service.java               # Lógica de acceso a archivos y gestión de datos
-  /ui
-    AppUI.java                 # Interfaz gráfica con Swing
-  /util
-    Validations.java           # Funciones de validación y sanitización
-/data
-  clients.txt                  # Datos de clientes
-  articles.txt                 # Datos de artículos
-  facturas.txt                 # Datos de facturas
-  lineas_factura.txt           # Líneas de facturas
+javac -d bin Main.java model/*.java service/*.java util/*.java ui/*.java
 
-Dependencias
 
-Java 8 o superior.
+Ejecutar el programa:
 
-No requiere librerías externas.
+java -cp bin Main
 
-Uso
-Interfaz gráfica (Swing)
 
-Ejecutar Main.java.
+El programa abrirá la interfaz gráfica y simultáneamente estará disponible un menú de consola en segundo plano.
 
-Aparecerá una ventana con botones para:
+Uso del programa
+Interfaz gráfica
 
-Clientes
+Clientes: Alta, listar y consultar.
 
-Artículos
+Artículos: Alta, listar y consultar.
 
-Facturas
+Facturas: Crear nueva factura, consultar por ID.
 
-Ver Archivos
+Ver archivos: Mostrar clientes, artículos y facturas con líneas y totales.
 
-Salir
+Salir: Cierra el programa.
 
-Seleccionar la opción deseada y seguir las instrucciones en ventanas emergentes.
+Menú de consola
 
-Cada apartado tiene un botón Info que muestra información contextual.
-
-Menú por consola
-
-Ejecutar Main.java.
-
-Se mostrará un menú con opciones numeradas:
+Opciones:
 
 1. Clientes
 2. Artículos
@@ -99,36 +98,59 @@ Se mostrará un menú con opciones numeradas:
 5. Salir
 
 
-Ingresar el número de la opción y seguir las instrucciones.
+Cada opción tiene submenús para alta, listar, consultar o ver información.
 
-Formato de almacenamiento
+Ejemplos
 
-Clientes (clients.txt):
-DNI;Nombre;Dirección;Población;CP;Provincia;Teléfono
+Alta de cliente (consola o GUI):
 
-Artículos (articles.txt):
-Nombre;Precio
+DNI: 12345678A
+Nombre: Juan Pérez
+Dirección: Calle Falsa 123
+Población: Ciudad
+CP: 28001
+Provincia: Madrid
+Teléfono: 600123456
 
-Facturas (facturas.txt):
-ID;Fecha;DNI Cliente;IVA
 
-Líneas de factura (lineas_factura.txt):
-ID Factura;Cantidad;Nombre Artículo;Precio Unitario
+Alta de artículo:
 
-Validaciones principales
+Nombre: Teclado
+Precio: 25.5
 
-DNI: 8 números + letra.
+
+Alta de factura:
+
+Seleccionar cliente existente por DNI
+
+Introducir IVA
+
+Añadir hasta 10 artículos con cantidad y precio
+
+Salida de factura:
+
+ID: 20251123-001
+Fecha: 2025-11-23
+DNI Cliente: 12345678A
+IVA: 21%
+Líneas:
+  Artículo: Teclado, Cantidad: 2, Precio: 25.5
+Total: 61.71
+
+Validaciones
+
+DNI: 8 números + 1 letra.
 
 Teléfono: 9 dígitos.
 
-CP: 5 dígitos.
+Código postal: 5 dígitos.
 
-Precio: ≥ 0.
+Precios: ≥ 0
 
-Cantidad: 1–9999.
+Cantidad: 1–9999
 
-IVA: 0–100%.
+IVA: 0–100%
 
-Texto: solo letras, espacios y acentos.
+Textos: solo letras, espacios y acentos.
 
-Fecha: formato AAAA-MM-DD.
+Fecha: formato AAAA-MM-DD
